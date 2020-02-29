@@ -1,5 +1,12 @@
 # BoraDale TDD
 
+*Traduzido de: http://www.blog.pythonlibrary.org/2019/09/18/python-code-kata-fizzbuzz/*
+
+- Vamos escrever um programa que escreve números de 1 a 100, cada um numa nova linha;
+- Pra cada número múltiplo de 3, escreve **Bora** ao invés do número;
+- Pra cada número múltiplo de 5, escreve **Dale** ao invés do número;
+- Pra cada número múltiplo de ambos 3 e 5, escreve *BoraDale* ao invés do número;
+
 Executar Teste
 `python test_boradale.py`
 
@@ -101,6 +108,7 @@ def process(number):
 
 import boradale
 import unittest
+
 class TestBoraDale(unittest.TestCase):
 
     def test_multiple_of_three(self):
