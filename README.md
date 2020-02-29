@@ -1,49 +1,147 @@
-## FizzBuzz TDD
+# BoraDale TDD
 
-*Traduzido de: http://www.blog.pythonlibrary.org/2019/09/18/python-code-kata-fizzbuzz/*
+Executar Teste
+`python test_boradale.py`
 
-- Vamos escrever um programa que escreve números de 1 a 100, cada um numa nova linha;
-- Pra cada número múltiplo de 3, escreve **Fizz** ao invés do número;
-- Pra cada número múltiplo de 5, escreve 'Buzz' ao invés do número;
-- Pra cada número múltiplo de ambos 3 e 5, escreve 'FizzBuzz' ao invés do número;
+Executar 
+`python boradale.py`
 
-# Atividades (Setup)
+## Etapa 1 - BORA
 
-1. Criar uma pasta FizzBuzz
-2. Abrir um terminal nesta pasta
-3. Iniciar um repositório git `git init`
-4. Criar um arquivo `.gitignore`, incluir a extensão *.pyc 
-
-# Atividade 1 - Fizz
-
-1. Criar um arquivo `test_fizzbuzz.py`
-2. Adicione este código no arquivo:
 ```python
-import fizzbuzz # módulo ainda não criado
-import unittest # nativo python
+# test_boradale.py
 
-# utiliza a subclasse TestCase 
-class TestFizzBuzz(unittest.TestCase):
- 
-    # criar série de funções que representam os casos de teste
+import boradale
+import unittest
+
+class TestBoraDale(unittest.TestCase):
+
     def test_multiple_of_three(self):
-       self.assertEqual(fizzbuzz.process(6), 'Fizz')
- 
-# executa o módulo
+       self.assertEqual(boradale.process(6), 'Bora')
+
+if __name__ == '__main__':
+    unittest.main()
+```
+```python
+# boradale.py
+
+def process(number):
+    if number % 3 == 0:
+        return 'Bora'
+```
+
+## Etapa 2 - DALE
+
+```python
+# test_boradale.py
+
+import boradale
+import unittest
+
+class TestBoraDale(unittest.TestCase):
+
+    def test_multiple_of_three(self):
+        self.assertEqual(boradale.process(6), 'Bora')
+
+    def test_multiple_of_five(self):
+        self.assertEqual(boradale.process(20), 'Dale')
 if __name__ == '__main__':
     unittest.main()
 ```
 
-3. Rodar `python test_fizzbuzz.py` e analisar o que aconteceu (falhou)
-4. Criar um `fizzbuzz.py` vazio
-5. Rodar teste novamente e analisar o que aconteceu (falhou)
-6. Adicionar uma função `process()` em `fizzbuzz.py`
 ```python
+# boradale.py
+
 def process(number):
     if number % 3 == 0:
-        return 'Fizz'
+        return 'Bora'
+    elif number % 5 == 0:
+        return 'Dale'
 ```
-7. Rodar teste novamente e analisar o que aconteceu (passou)
+
+## Etapa 3 - BORADALE
+
+```python
+# test_boradale.py
+
+import boradale
+import unittest
+
+class TestBoraDale(unittest.TestCase):
+
+    def test_multiple_of_three(self):
+        self.assertEqual(boradale.process(6), 'Bora')
+
+    def test_multiple_of_five(self):
+        self.assertEqual(boradale.process(20), 'Dale')
+
+    def test_boradale(self):
+        self.assertEqual(boradale.process(15), 'BoraDale')
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+```python
+# boradale.py
+
+def process(number):
+    if number % 3 == 0 and number % 5 == 0:
+        return 'BoraDale'
+    elif number % 3 == 0:
+        return 'Bora'
+    elif number % 5 == 0:
+        return 'Dale'
+```
+
+## Etapa Final - Refactor
+
+```python
+# test_boradale.py
+
+import boradale
+import unittest
+class TestBoraDale(unittest.TestCase):
+
+    def test_multiple_of_three(self):
+        self.assertEqual(boradale.process(6), 'Bora')
+
+    def test_multiple_of_five(self):
+        self.assertEqual(boradale.process(20), 'Dale')
+
+    def test_boradale(self):
+        self.assertEqual(boradale.process(15), 'BoraDale')
+
+    def test_regular_numbers(self):
+        self.assertEqual(boradale.process(2), 2)
+        self.assertEqual(boradale.process(98), 98)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+```python
+# boradale.py
+
+def process(number):
+    if number % 3 == 0 and number % 5 == 0:
+        return 'BoraDale'
+    elif number % 3 == 0:
+        return 'Bora'
+    elif number % 5 == 0:
+        return 'Dale'
+    else:
+        return number
+
+if __name__ == '__main__':
+    for i in range(1, 101):
+        print(process(i))
+```
+
+
+
+
+
 
 
 
